@@ -1,0 +1,142 @@
+/* 
+==============================================
+CONTENT:	Project Name Here
+AUTHOR:		Your Name Here
+==============================================
+
+TABLE OF CONTENTS:
+
+1. Main Layout
+2. Content
+
+==============================================
+*/
+/* 1. Main Layout ================================= */
+* {
+  box-sizing: border-box; }
+
+body {
+  background: #ccc; }
+
+.content {
+  position: relative;
+  background: white;
+  padding: 50px 30px 50px;
+  font-family: sans-serif;
+  width: 90%;
+  max-width: 500px;
+  margin: 140px auto; }
+
+/* 2. Content ================================= */
+.top-angle {
+  position: absolute;
+  left: -1%;
+  top: -15px;
+  width: 102%;
+  height: 30px;
+  background: #ccc;
+  transform: rotate(-2.2deg); }
+
+.bottom-angle {
+  position: absolute;
+  left: -1%;
+  bottom: -15px;
+  width: 102%;
+  height: 30px;
+  background: #ccc;
+  transform: rotate(1.5deg); }
+
+.logo {
+  position: absolute;
+  top: -10px;
+  width: 60px; }
+
+h1 {
+  font-weight: 700;
+  font-size: 22pt;
+  margin: 15px 0; }
+
+p {
+  color: #777;
+  line-height: 140%; }
+
+code {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.8em;
+  opacity: 0.1; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  color: white;
+  padding: 0;
+  margin: 0; }
+
+form {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: white;
+  z-index: 10; }
+
+input {
+  border-color: transparent;
+  outline: none;
+  background-color: transparent; }
+
+#username {
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px; }
+
+.username {
+  font-weight: bold;
+  color: #2c2084; }
+
+#content {
+  width: 90%;
+  margin-right: 2%;
+  height: 40px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px; }
+
+#post_message {
+  width: 50px;
+  height: 30px;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px; }
+
+ul {
+  margin: 0;
+  padding: 0; }
+
+#messages {
+  position: absolute;
+  width: 80%;
+  top: 0px;
+  left: 0px;
+  padding-bottom: 140px; }
+
+li.message {
+  width: 100%;
+  height: auto;
+  background-color: #729294;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin: 10px;
+  list-style: none; }
+
+li.editing {
+  background-color: #bbb; }
+  li.editing input {
+    border-color: yellow; }
+
+.delete-message {
+  cursor: pointer; }
+
+/*# sourceMappingURL=main.css.map */
