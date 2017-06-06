@@ -20,10 +20,19 @@ TABLE OF CONTENTS:
 	box-sizing: border-box;
 }
 
-body {
+body, html {
 	background: #ccc;
+	font-family: 'Montserrat', sans-serif;
 }
-
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 3px;
+	background-color: rgba(255,255,255,0.2);
+	z-index: 10;
+}
 
 .content {
 	position: relative;
@@ -60,23 +69,32 @@ a{
 	background: #ccc;
 	transform: rotate(1.5deg);
 }
-
+.profile-image{
+	max-height: 30px;
+}
 .logo {
 	position: absolute;
-	top: -10px;
-	width: 60px;
+	top: 0;
+	right: 0px;
+	width: 20%;
+	max-width: 200px;
+	padding: 5px;
+	// max-height: 50px;
 }
 
-h1 {
+h1, .need-title {
 	font-weight: 700;
 	font-size: 22pt;
-	margin: 15px 0;
+	margin: 8px 0;
+	color: #FFF;
 }
-
+a{
+	color: #03cbf1;
+}
 p {
-	color: #777;
+	color: #FFF;
 	// margin: 10px 0;
-	line-height: 140%;
+	//line-height: 140%;
 }
 
 code {
@@ -93,17 +111,26 @@ body, html{
 	padding: 0;
 	margin: 0;
 }
-form{
+form.create-need-form{
 	width: 100%;
 	position: fixed;
 	bottom:0;
 	background-color: white;
 	z-index: 10;
 }
-input{
+.create-need-form input{
 	border-color: transparent;
 	outline: none;
 	background-color: transparent;
+}
+form.create-message{
+	float: left;
+	width: 100%;
+	height: auto;
+	color: black;
+}
+.desc{
+	width: 100%;
 }
 #username{
 	border-radius: 5px;
@@ -115,19 +142,35 @@ input{
 	color: #2c2084;
 }
 #content{
-	width: 90%;
-	margin-right: 2%;
+	width: 100%;
+	//7100cd
+	//margin-right: 2%;
 	height: 40px;
 	border-radius: 5px;
 	padding: 5px;
 	margin: 5px;
+	background-color: rgba(113,0,205,0.2);
+	color: #999;
+	transform-duration: all 0.5s;
+	&:hover{
+		color: #000;
+		background-color: rgba(113,0,205,0.3);
+	}
 }
 #post_need{
-	width: 50px;
+	//width: 50px;
 	height: 30px;
 	border-radius: 5px;
 	padding: 5px;
 	margin: 5px;
+}
+#post_message{
+	background: #03cbf1;
+	// width: 50px;
+	// height: 30px;
+	// border-radius: 5px;
+	// padding: 5px;
+	// margin: 5px;
 }
 ul{
 	margin: 0;
@@ -136,19 +179,95 @@ ul{
 #needs{
 	position: absolute;
 	width: 80%;
-	top: 0px;
-	left: 0px;
+	top: 60px;
+	left: 50%;
+    transform: translate(-50%);
 	padding-bottom: 140px;
 }
-li.need{
+#messages {
+  position: absolute;
+  width: 80%;
+  top: 0px;
+  left: 0px;
+  padding-bottom: 140px;
+}
+.desc{
+	background: transparent;
+    border: none;
+}
+li.neednull{
 	width: 100%;
 	height: auto;
-	background-color: #729294;
+	background-color: rgba(113,0,205,0.5);
+	padding: 8px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	margin: 10px 0;
+	list-style: none;
+}
+li.need1{
+	width: 100%;
+	height: auto;
+	background-color: rgba(113,0,205,0.5);
+	padding: 8px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	margin: 10px 0;
+	list-style: none;
+}
+li.need2{
+	width: 100%;
+	height: auto;
+	background-color: rgba(13,0,25,0.5);
+	padding: 8px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	margin: 10px 0;
+	list-style: none;
+}
+li.need3{
+	width: 100%;
+	height: auto;
+	background-color: rgba(253,24,205,0.5);
+	padding: 8px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	margin: 10px 0;
+	list-style: none;
+}
+li.need4{
+	width: 100%;
+	height: auto;
+	background-color: rgba(45,100,205,0.5);
+	padding: 8px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	margin: 10px 0;
+	list-style: none;
+}
+li.need5{
+	width: 100%;
+	height: auto;
+	background-color: rgba(0,255,205,0.5);
+	padding: 8px;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 5px;
+	margin: 10px 0;
+	list-style: none;
+}
+li.message{
+	width: 100%;
+	height: auto;
+	background-color: #333;
 	padding: 5px;
 	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 5px;
-	margin: 10px;
+	margin: 12px;
 	list-style: none;
+	box-shadow: 2px 3px 9px #000;
+}
+.messages{
+	margin-top: 48px;
 }
 li{
 	&.editing{
@@ -157,5 +276,6 @@ li{
 	}
 }
 .delete-need{
+	float: right;
 	cursor: pointer;
 }

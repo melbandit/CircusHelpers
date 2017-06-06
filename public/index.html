@@ -7,22 +7,37 @@
 	<title>Circus Helpers</title>
 
 	<link rel="stylesheet" href="assets/css/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
 
 <body>
-<a href="/auth/google">Sign In with Google</a>
-<a href="/logout">Log Out with Google</a>
+<header>
+	<h3></h3>
+	<img class="logo right" src="assets/img/logo_2.png">
+	<img class="profile-image" src="assets/img/logo.png">
+	<a class="link-log-in" href="/auth/google">Sign In with Google</a>
+	<a class="link-log-out" href="/logout">Log Out with Google</a>
+</header>
 
-<ul id="needs"></ul>
+
+<ul id="needs">
+	
+</ul>
 
 <form class="create-need-form" method="post" action="http://dev.melissasattler.com/needs">
-	<input id="content" type="text" placeholder="what I'm going to say..." name="content">
+	<input id="content" type="text" placeholder="what I need..." name="title">
+	<input id="description" type="text" placeholder="description..." name="content">
+	<input id="need-by" type="text" placeholder="when I need it by..." name="time">
+	<input id="pick-up-location" type="text" placeholder="where..." name="location">
+	<input id="urgent" type="text" placeholder="Urgency 1 to 5" name="urgent">
 	<input id="post_need" type="submit">
 </form>
 
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
