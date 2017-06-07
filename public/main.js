@@ -18,6 +18,7 @@ $.ajax(api_url + "/auth/status").done(function(data, textStatus, jqXHR) {
     if (!loggedInUserData.loggedIn) {
         $("header h3").text("Welcome stranger!");
         $(".link-log-out").hide();
+        $("body").addClass('loggedIn');
         hideButtons();
     } else {
         if (loggedInUserData.displayName) {
@@ -26,6 +27,7 @@ $.ajax(api_url + "/auth/status").done(function(data, textStatus, jqXHR) {
             $("header h3").text("Welcome back Buddy!");
         }
         $(".link-log-in").hide();
+        $("body").addClass('loggedOut');
         showButtons();
         if (loggedInUserData.image){ 
             $("img.profile-image").attr("src", loggedInUserData.image);
@@ -34,44 +36,44 @@ $.ajax(api_url + "/auth/status").done(function(data, textStatus, jqXHR) {
 })
 
 $.ajax({
-	url: api_url + '/needs',
-	method: 'GET'
+    url: api_url + '/needs',
+    method: 'GET'
 })
 .done(function(data, msg, xhr) {
-	for (var i = 0; i < data.length; i++) {
-		createNeedElement(data[i]);
-	}
+    for (var i = 0; i < data.length; i++) {
+        createNeedElement(data[i]);
+    }
 })
 .fail(function() {
-	console.log("error");
+    console.log("error");
 })
 .always(function() {
-	console.log("complete");
+    console.log("complete");
 });
-	
+    
 $('.create-need-form').on("submit", function(e){
     e.preventDefault();
    // console.log('post_message clicked', $(this).serialize());
 
     $.ajax( api_url +"/needs", { 
-    	method: "post",
-    	data: $(this).serialize()
+        method: "post",
+        data: $(this).serialize()
     }).done(function(data){
-    	createNeedElement(data);
+        createNeedElement(data);
     });
 });
 
 var createNeedElement = function(needData) {
-	var date = new Date(needData.created_at);
-	var hours = date.getHours();
-	var minutes = "0" + date.getMinutes();
-	var formattedTime = hours + ':' + minutes.substr(-2);
-	var ampm;
-	if (hours >= 12){
-		ampm = "PM";
-	} else{
-		ampm = "AM";
-	}
+    var date = new Date(needData.created_at);
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var formattedTime = hours + ':' + minutes.substr(-2);
+    var ampm;
+    if (hours >= 12){
+        ampm = "PM";
+    } else{
+        ampm = "AM";
+    }
     var $li = $('<li data-id="'+ needData._id +'" class="need need'+ needData.urgent +'"></li>');
     
     var $need = $('<input class="desc need-title" type="textarea">').val(needData.title);
@@ -143,16 +145,10 @@ var createNeedElement = function(needData) {
 //     }
 // });
 var showButtons = function() {
-    var buttons = document.querySelectorAll("button");
-    for (var i = 0; i < buttons.length; i++) {
-        $('button').removeClass('display-none');
-    }
+    $('button').removeClass('display-none');
 }
 var hideButtons = function() {
-    var buttons = document.querySelectorAll("button");
-    for (var i = 0; i < buttons.length; i++) {
-        $('button').addClass('display-none');
-    }
+    $('button').addClass('display-none');
 }
 
 $("body").on("submit", '.create-message', function(e){
@@ -250,6 +246,3 @@ var updateNeedElement = function(){
         event.preventDefault();
     }
 }
-
-
-
