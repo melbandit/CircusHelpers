@@ -1,3 +1,10 @@
+$(document).ready(function() { 
+    var buttons = document.querySelectorAll("button");
+
+    for (var i = 0; i < buttons.length; i++) {
+        $('button').removeClass('display-none');
+    }
+});
 var api_url = "http://dev.melissasattler.com";
 var id = this.id;
 
@@ -11,6 +18,7 @@ $.ajax(api_url + "/auth/status").done(function(data, textStatus, jqXHR) {
     if (!loggedInUserData.loggedIn) {
         $("header h3").text("Welcome stranger!");
         $(".link-log-out").hide();
+        hideButtons();
     } else {
         if (loggedInUserData.displayName) {
             $("header h3").text("Hello, " + loggedInUserData.displayName);
@@ -18,6 +26,7 @@ $.ajax(api_url + "/auth/status").done(function(data, textStatus, jqXHR) {
             $("header h3").text("Welcome back Buddy!");
         }
         $(".link-log-in").hide();
+        showButtons();
         if (loggedInUserData.image){ 
             $("img.profile-image").attr("src", loggedInUserData.image);
         }
@@ -29,8 +38,6 @@ $.ajax({
 	method: 'GET'
 })
 .done(function(data, msg, xhr) {
-	//console.log("success", data);
-
 	for (var i = 0; i < data.length; i++) {
 		createNeedElement(data[i]);
 	}
@@ -54,7 +61,6 @@ $('.create-need-form').on("submit", function(e){
     });
 });
 
-
 var createNeedElement = function(needData) {
 	var date = new Date(needData.created_at);
 	var hours = date.getHours();
@@ -71,7 +77,7 @@ var createNeedElement = function(needData) {
     var $need = $('<input class="desc need-title" type="textarea">').val(needData.title);
     var $locationTitle = $('<h5 class="location-title">Location</h5>');
     var $location = $('<input class="desc need-location" type="textarea">').val(needData.location);
-    var $editButton = $('<button class="btn btn-outline-secondary" type="button" class="edit-need"> Edit </button>');
+    var $editButton = $('<button class="btn btn-outline-secondary edit-need" type="button" class="edit-need"> Edit </button>');
     var $deleteButton = $('<button class="btn btn-outline-secondary delete-need" type="button"> X </button>');
     var $inputField = $("<input class='desc' type='textarea'>").val(needData.content);
     var $userTimeInfo = $("<p>" +formattedTime + " " + ampm + " need by " + "<span class='username'>" + needData.user + '</span></p>');
@@ -117,6 +123,8 @@ var createNeedElement = function(needData) {
                 console.log("complete");
             }); 
             //createMessageElement()
+
+           
         }
     })
 
@@ -124,6 +132,26 @@ var createNeedElement = function(needData) {
 
     for (var i = 0; i < needData.messages.length; i++) {
         createMessageElement(needData.messages[i], needData._id);
+    }
+}
+// $("body").on("click", ".link-log-in", function(){
+//     var buttons = document.querySelectorAll("button");
+//     for (var i = 0; i < buttons.length; i++) {
+//         console.log("buttons recognized");
+//         //buttons[i].removeClass('display-none');
+//         $('button').removeClass('display-none');
+//     }
+// });
+var showButtons = function() {
+    var buttons = document.querySelectorAll("button");
+    for (var i = 0; i < buttons.length; i++) {
+        $('button').removeClass('display-none');
+    }
+}
+var hideButtons = function() {
+    var buttons = document.querySelectorAll("button");
+    for (var i = 0; i < buttons.length; i++) {
+        $('button').addClass('display-none');
     }
 }
 
@@ -155,6 +183,7 @@ var createMessageElement = function(messageData, needID) {
     $li.appendTo( $messageUL );
     
 }
+ 
 
 var deleteNeedElement = function(){
     console.log("deleted need on", $(this).parents("li").attr("data-id"));
@@ -185,11 +214,11 @@ var setUpEditElement = function(){
 }
 
 var preventTyping = function() {
-     if($(this).parents("li").hasClass('editing')){
+    if($(this).parents("li").hasClass('editing')){
 
-     } else{
+    } else{
         event.preventDefault();
-     }
+    }
 }
 
 

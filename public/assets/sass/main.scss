@@ -49,6 +49,10 @@ a{
 	z-index: 1000;
 }
 
+button.display-none{
+	display: none;
+}
+
 /* 2. Content ================================= */
 
 .top-angle {
@@ -179,7 +183,7 @@ ul{
 #needs{
 	position: absolute;
 	width: 80%;
-	top: 60px;
+	top: 74px;
 	left: 50%;
     transform: translate(-50%);
 	padding-bottom: 140px;
