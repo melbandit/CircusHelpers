@@ -117,8 +117,6 @@ var createNeedElement = function(needData) {
                 console.log("complete");
             }); 
             //createMessageElement()
-
-           
         }
     })
 
@@ -157,7 +155,6 @@ var createMessageElement = function(messageData, needID) {
     $li.appendTo( $messageUL );
     
 }
- 
 
 var deleteNeedElement = function(){
     console.log("deleted need on", $(this).parents("li").attr("data-id"));
