@@ -1,13 +1,5 @@
-$(document).ready(function() { 
-    var buttons = document.querySelectorAll("button");
-
-    for (var i = 0; i < buttons.length; i++) {
-        $('button').removeClass('display-none');
-    }
-});
 var api_url = "http://dev.melissasattler.com";
 var id = this.id;
-
 let loggedInUserData;
 
 // get user login status and change UI to match
@@ -97,10 +89,12 @@ var createNeedElement = function(needData) {
     $userTimeInfo.appendTo($li);
     $editButton.appendTo($li);
     $deleteButton.appendTo($li);
-    
+
     $li.appendTo("#needs");
 
     $editButton.on("click", function() {
+        var $alert = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Come On!</strong> You are not allowed to do that.</div>');
+
         if (!$li.hasClass("editing")) {
             $(this).text("Save");
             $li.addClass("editing");
@@ -119,7 +113,8 @@ var createNeedElement = function(needData) {
                 console.log(data);
                 //$edit.replaceWith(data); //remove deleted item from DOM
             }).fail(function() {
-                console.log("error");
+                console.log("error in editing");
+                $alert.appendTo($li);
             })
             .always(function() {
                 console.log("complete");
@@ -135,20 +130,6 @@ var createNeedElement = function(needData) {
     for (var i = 0; i < needData.messages.length; i++) {
         createMessageElement(needData.messages[i], needData._id);
     }
-}
-// $("body").on("click", ".link-log-in", function(){
-//     var buttons = document.querySelectorAll("button");
-//     for (var i = 0; i < buttons.length; i++) {
-//         console.log("buttons recognized");
-//         //buttons[i].removeClass('display-none');
-//         $('button').removeClass('display-none');
-//     }
-// });
-var showButtons = function() {
-    $('button').removeClass('display-none');
-}
-var hideButtons = function() {
-    $('button').addClass('display-none');
 }
 
 $("body").on("submit", '.create-message', function(e){
@@ -185,6 +166,8 @@ var deleteNeedElement = function(){
     console.log("deleted need on", $(this).parents("li").attr("data-id"));
     var $needLi = $(this).parents("li");
     var id = $needLi.attr("data-id");
+    var $alert = $('<div class="alert alert-danger alert-dismissible fade show" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><strong>Really!</strong> You are not authorized to delete.</div>');
+
         $.ajax({
             url: api_url + '/needs/' + id,
             method: 'delete'//,
@@ -193,7 +176,8 @@ var deleteNeedElement = function(){
             console.log(data);
             $needLi.fadeOut(); //remove deleted item from DOM
         }).fail(function() {
-        console.log("error");
+            console.log("error");
+            $alert.appendTo($needLi);
         })
         .always(function() {
             console.log("complete");
@@ -219,8 +203,6 @@ var preventTyping = function() {
 
 
 var updateNeedElement = function(){
-    console.log("edit item on type");
-
     var $edit = $(this).parents("li").hasClass('editing');
     var id = $(this).parents("li").attr("data-id");
 
@@ -235,7 +217,7 @@ var updateNeedElement = function(){
             console.log(data);
             //$edit.replaceWith(data); //remove deleted item from DOM
         }).fail(function() {
-        console.log("error");
+            console.log("error");
         })
         .always(function() {
             console.log("complete");

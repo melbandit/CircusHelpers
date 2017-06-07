@@ -50,14 +50,20 @@ a{
 }
 
 body.loggedIn{
-	button {
+	button.edit-need, button.delete-need, form.create-need-form, form.create-message{
 		display: none;
 	}
 }
 body.loggedOut{
-	button {
-		display: block;
+	button.edit-need, button.delete-need, form.create-need-form{
+		display: inline-block;
 	}
+	form.create-message{
+		display: flex;
+	}
+}
+.alert{
+	margin-top: 8px;
 }
 
 /* 2. Content ================================= */
@@ -135,7 +141,7 @@ form.create-need-form{
 	background-color: transparent;
 }
 form.create-message{
-	float: left;
+
 	width: 100%;
 	height: auto;
 	color: black;
@@ -273,13 +279,11 @@ li.message{
 	padding: 5px;
 	border: 1px solid rgba(0,0,0,0.2);
 	border-radius: 5px;
-	margin: 12px;
+	margin: 12px 0;
 	list-style: none;
 	box-shadow: 2px 3px 9px #000;
 }
-.messages{
-	margin-top: 48px;
-}
+
 li{
 	&.editing{
 		background-color: #bbb;
