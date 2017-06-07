@@ -49,8 +49,15 @@ a{
 	z-index: 1000;
 }
 
-button.display-none{
-	display: none;
+body.loggedIn{
+	button {
+		display: none;
+	}
+}
+body.loggedOut{
+	button {
+		display: block;
+	}
 }
 
 /* 2. Content ================================= */

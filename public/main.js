@@ -79,8 +79,8 @@ var createNeedElement = function(needData) {
     var $need = $('<input class="desc need-title" type="textarea">').val(needData.title);
     var $locationTitle = $('<h5 class="location-title">Location</h5>');
     var $location = $('<input class="desc need-location" type="textarea">').val(needData.location);
-    var $editButton = $('<button class="btn btn-outline-secondary edit-need display-none" type="button" class="edit-need"> Edit </button>');
-    var $deleteButton = $('<button class="btn btn-outline-secondary delete-need display-none" type="button"> X </button>');
+    var $editButton = $('<button class="btn btn-outline-secondary edit-need" type="button" class="edit-need"> Edit </button>');
+    var $deleteButton = $('<button class="btn btn-outline-secondary delete-need" type="button"> X </button>');
     var $inputField = $("<input class='desc' type='textarea'>").val(needData.content);
     var $userTimeInfo = $("<p>" +formattedTime + " " + ampm + " need by " + "<span class='username'>" + needData.user + '</span></p>');
     var $ul = $('<ul class="messages"></ul>');
